@@ -5,6 +5,7 @@ import { TemplateService } from '../template.service';
 import { TemplateResponseDto } from '../dto/template.dto';
 import { TemplateResquestDto } from '../request/template-request.dto';
 import { TemplateSearchResquestDto } from '../request/template-search-request.dto';
+import { TemplateUpdateCategoryResquestDto } from '../request/template-update-category-request.dto';
 
 @Controller('template')
 @ApiTags('Template')
@@ -25,5 +26,19 @@ export class TemplateController {
 	@ApiResponse({status:200, type: TemplateResponseDto})
 	public async proccessSearchTemplate(@Body() templateSearchResquestDto: TemplateSearchResquestDto) {
 	return await this.templateService.search(templateSearchResquestDto)
+    }
+
+    @Post('search-template')
+	@ApiOperation({ summary: `create Template`})
+	@ApiResponse({status:200, type: TemplateResponseDto})
+	public async proccessSearchTemplateSub(@Body() templateSearchResquestDto: TemplateSearchResquestDto) {
+	return await this.templateService.template(templateSearchResquestDto)
+    }
+
+    @Post('update-catergory')
+	@ApiOperation({ summary: `create Template`})
+	@ApiResponse({status:200, type: TemplateResponseDto})
+	public async proccessUpdateCategoryTemplateSub(@Body() templateUpdateCategoryResquestDto: TemplateUpdateCategoryResquestDto) {
+	return await this.templateService.UpdateCategorytemplate(templateUpdateCategoryResquestDto)
     }
 }

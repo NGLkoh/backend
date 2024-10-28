@@ -24,6 +24,9 @@ export class Template {
 
     @Prop()
 	idSub?: string
+
+    @Prop()
+	comment?: [object]
 }
 
 export const TemplateSchema = SchemaFactory.createForClass(Template);
