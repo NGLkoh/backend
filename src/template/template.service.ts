@@ -25,6 +25,12 @@ export class TemplateService {
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
+	async searchAll(): Promise<any> {
+		const result: any =  await this.templateModel.find().exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
+
 	async template(templateSearchResquestDto: TemplateSearchResquestDto): Promise<any> {
 		const result: any =  await this.templateModel.find({ '_id': templateSearchResquestDto.ids}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};

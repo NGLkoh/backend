@@ -28,6 +28,14 @@ export class TemplateController {
 	return await this.templateService.search(templateSearchResquestDto)
     }
 
+
+    @Post('search-all')
+	@ApiOperation({ summary: `create Template`})
+	@ApiResponse({status:200, type: TemplateResponseDto})
+	public async proccessAllTemplate() {
+	return await this.templateService.searchAll()
+    }
+
     @Post('search-template')
 	@ApiOperation({ summary: `create Template`})
 	@ApiResponse({status:200, type: TemplateResponseDto})
