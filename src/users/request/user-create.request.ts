@@ -19,6 +19,18 @@ export class UserCreateResquestDto {
 	@ApiProperty()
 	code: Number
 
+    @ApiProperty()
+	businessPermit?: string
+
+    @ApiProperty()
+    barangayClearance?: string
+
+    @ApiProperty()
+	profileSet: number
+
+    @ApiProperty()
+	active: boolean
+
 	@ApiProperty()
 	userType: String
 }

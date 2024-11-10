@@ -19,6 +19,12 @@ export class Template {
 	@Prop()
 	data: string
 
+ 	@Prop()
+	fileName: string
+
+	@Prop()
+	description: string
+
 	@Prop()
 	sub?: boolean
 

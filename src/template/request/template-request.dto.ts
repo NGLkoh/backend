@@ -12,4 +12,10 @@ export class TemplateResquestDto {
 
 	@ApiProperty()
 	data: string
+ 
+    @ApiProperty()
+	fileName: string
+
+	@ApiProperty()
+	description: string
 }

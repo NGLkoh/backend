@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TemplateModule } from './template/template.module';
 import { CategoryModule } from './category/category.module';
 import {CommentModule } from './comment/comment.module'
+import {MediaModule } from './media/media.module'
 @Module({
   imports: [ 
   UsersModule,
@@ -15,6 +16,7 @@ import {CommentModule } from './comment/comment.module'
   ConfigModule.forRoot(),
   MongooseModule.forRoot(process.env.mongo_url),
   TemplateModule,
+  MediaModule,
   CommentModule,
   CategoryModule],
   providers: [AppService],

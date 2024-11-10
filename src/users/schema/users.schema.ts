@@ -24,9 +24,24 @@ export class User {
 
 	@Prop()
 	code: string
+     
+    @Prop()
+	businessPermit: string
+
+    @Prop()
+    barangayClearance: string
 
 	@Prop()
 	userType: string
+
+    @Prop()
+	profileSet: number
+ 
+    @Prop()
+	profile: [object]
+
+    @Prop()
+	active: boolean
 
     @Prop()
 	ids: string
