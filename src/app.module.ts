@@ -8,6 +8,7 @@ import { TemplateModule } from './template/template.module';
 import { CategoryModule } from './category/category.module';
 import {CommentModule } from './comment/comment.module'
 import {MediaModule } from './media/media.module'
+import {MessageModule } from './message/message.module'
 @Module({
   imports: [ 
   UsersModule,
@@ -18,6 +19,7 @@ import {MediaModule } from './media/media.module'
   TemplateModule,
   MediaModule,
   CommentModule,
+  MessageModule,
   CategoryModule],
   providers: [AppService],
 })
