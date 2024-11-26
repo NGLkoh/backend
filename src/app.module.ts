@@ -9,6 +9,7 @@ import { CategoryModule } from './category/category.module';
 import {CommentModule } from './comment/comment.module'
 import {MediaModule } from './media/media.module'
 import {MessageModule } from './message/message.module'
+import {EventModule } from './events/events.module'
 @Module({
   imports: [ 
   UsersModule,
@@ -20,6 +21,7 @@ import {MessageModule } from './message/message.module'
   MediaModule,
   CommentModule,
   MessageModule,
+  EventModule,
   CategoryModule],
   providers: [AppService],
 })
