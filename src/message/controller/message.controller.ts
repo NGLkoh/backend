@@ -4,7 +4,7 @@ import { MessageResponseDto } from '../dto/catergory.dto';
 import { MessageService } from '../message.service';
 import { MessageResquestDto } from '../request/message-request.dto';
 import { MessageSearchResquestDto } from '../request/message-search-request.dto';
-import { CategoryUpdateResquestDto } from '../request/message-update-request.dto';
+import { MessageUpdateResquestDto } from '../request/message-update-request.dto';
 
 @Controller('message')
 @ApiTags('Message')
@@ -26,17 +26,10 @@ export class MessageController {
 	return await this.messageService.search(messageSearchResquestDto)
     }
 	
-	// @Post('searchById')
-	// @ApiOperation({ summary: `search Category By Id`})
-	// @ApiResponse({status:200, type: CategoryResponseDto})
-	// public async proccessSearchCategoryById(@Body() categorySearchResquestDto: CategorySearchResquestDto) {
-	// return await this.categoryService.searchById(categorySearchResquestDto)
-    // }
-
-   	// @Post('updateById')
-	// @ApiOperation({ summary: `Update Category By Id`})
-	// @ApiResponse({status:200, type: CategoryResponseDto})
-	// public async proccessUpdateCategoryById(@Body() categoryUpdateResquestDto: CategoryUpdateResquestDto) {
-	// return await this.categoryService.updateById(categoryUpdateResquestDto)
-    // }
+   	@Post('update')
+	@ApiOperation({ summary: `Update MEssage`})
+	@ApiResponse({status:200, type: MessageResponseDto})
+	public async proccessUpdateCategoryById(@Body() messageUpdateResquestDto: MessageUpdateResquestDto) {
+	return await this.messageService.updateById(messageUpdateResquestDto)
+    }
 }

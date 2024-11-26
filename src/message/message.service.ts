@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Message } from './schema/message.schema';
 import { MessageResquestDto } from './request/message-request.dto';
 import { MessageSearchResquestDto } from './request/message-search-request.dto';
-import { CategoryUpdateResquestDto } from './request/message-update-request.dto';
+import { MessageUpdateResquestDto } from './request/message-update-request.dto';
 
 @Injectable()
 export class MessageService {
@@ -26,10 +26,11 @@ export class MessageService {
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
-   	// async searchById(categorySearchResquestDto: CategorySearchResquestDto): Promise<any> {
-	// 	const result: any =  await this.categoryModel.find({ '_id': categorySearchResquestDto.ids}).exec()
-	// 	return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
-	// }
+   	async updateById(messageUpdateResquestDto: MessageUpdateResquestDto): Promise<any> {
+		await this.messageModel.updateOne({ '_id': messageUpdateResquestDto.messageId} , { $push: { convo: {message : messageUpdateResquestDto.message, id: messageUpdateResquestDto.userId }  }}).exec()
+		const result: any =  await this.messageModel.find({ 'users':  messageUpdateResquestDto.userId}).exec()		
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
 
     // async updateById(categoryUpdateResquestDto: CategoryUpdateResquestDto): Promise<any> {
     //      let newId = new Types.ObjectId(categoryUpdateResquestDto.ids)
