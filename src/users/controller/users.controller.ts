@@ -99,4 +99,11 @@ export class UserController {
 	public async addProfileBlog(@Body() addProfileResquestByIdDto: AddProfileResquestByIdDto) {
 	return await this.usersService.addProfileBlog(addProfileResquestByIdDto)
    }
+
+    @Post('edit-profile-blog')
+	@ApiOperation({ summary: `edit profile blog`})
+	@ApiResponse({status:200, type: UserResponseDto})
+	public async editProfileBlog(@Body() editdProfileResquestByIdDto: AddProfileResquestByIdDto) {
+	return await this.usersService.editProfileBlog(editdProfileResquestByIdDto)
+   }
 }

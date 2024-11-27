@@ -14,7 +14,7 @@ export class Event {
 	title: string
 
 	@Prop()
-	users: [object]
+	users: [string]
 
 	@Prop()
 	date: string

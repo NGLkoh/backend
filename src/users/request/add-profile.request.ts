@@ -11,6 +11,7 @@ export class AddProfileResquestByIdDto {
 
 interface  profile {
 	file: string
+    backgroundImage: string
 	description : string
 	facebook : string
 	twitter : string
