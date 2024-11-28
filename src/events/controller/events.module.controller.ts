@@ -5,6 +5,7 @@ import { EventService } from '../events.module.service';
 import { EventResquestDto } from '../request/events.module-request.dto';
 import { CategorySearchResquestDto } from '../request/events.module-search-request.dto';
 import { CategoryUpdateResquestDto } from '../request/events.module-update-request.dto';
+import { CategoryUpdateUserResquestDto } from '../request/events.module-add-update-request.dto';
 
 @Controller('event')
 @ApiTags('Event')
@@ -46,4 +47,12 @@ export class EventController {
 	public async proccessUpdateCategoryById(@Body() categoryUpdateResquestDto: CategoryUpdateResquestDto) {
 	return await this.eventService.updateById(categoryUpdateResquestDto)
     }
+
+    @Post('updateUsersEventById')
+	@ApiOperation({ summary: `Update Event By Id`})
+	@ApiResponse({status:200, type: EventResponseDto})
+	public async proccessUpdateEventCategoryById(@Body() categoryUpdateUserResquestDto: CategoryUpdateUserResquestDto) {
+	return await this.eventService.addUserToEvent(categoryUpdateUserResquestDto)
+    }
+    
 }

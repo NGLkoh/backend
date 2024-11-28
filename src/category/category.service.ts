@@ -36,4 +36,9 @@ export class CategoryService {
 	 	const result: any =  await this.categoryModel.updateOne( { _id: newId }, { $set: { title: categoryUpdateResquestDto.title } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+        async all(): Promise<any> {
+		const result: any =  await this.categoryModel.find().exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	} 
 }

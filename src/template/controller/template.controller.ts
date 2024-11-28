@@ -49,4 +49,11 @@ export class TemplateController {
 	public async proccessUpdateCategoryTemplateSub(@Body() templateUpdateCategoryResquestDto: TemplateUpdateCategoryResquestDto) {
 	return await this.templateService.UpdateCategorytemplate(templateUpdateCategoryResquestDto)
     }
+
+   @Post('all')
+	@ApiOperation({ summary: `all`})
+	@ApiResponse({status:200, type: TemplateResponseDto})
+	public async proccessSearchCategory() {
+	return await this.templateService.all()
+    }
 }

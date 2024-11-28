@@ -111,7 +111,7 @@ export class UserService {
         let newId = new Types.ObjectId(addProfileResquestByIdDto.id)
          console.log(addProfileResquestByIdDto , "DSDS")
         await this.userModel.updateOne( { _id: newId }, [{ $set: { profileSet: 1 } }],{ upsert: true }).exec()
-		const result: any =  await this.userModel.updateOne( { _id: newId }, { $set: { profile: addProfileResquestByIdDto.data } },{ upsert: true }).exec()
+		const result: any =  await this.userModel.updateOne( { _id: newId }, { $push: { profile: addProfileResquestByIdDto.data } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
  

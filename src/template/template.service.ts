@@ -31,10 +31,17 @@ export class TemplateService {
 	}
 
 
+
 	async template(templateSearchResquestDto: TemplateSearchResquestDto): Promise<any> {
 		const result: any =  await this.templateModel.find({ '_id': templateSearchResquestDto.ids}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+
+    async all(): Promise<any> {
+		const result: any =  await this.templateModel.find().exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	} 
 
     async UpdateCategorytemplate(templateUpdateCategoryResquestDto: TemplateUpdateCategoryResquestDto): Promise<any> {
 

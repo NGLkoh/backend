@@ -25,4 +25,11 @@ export class CommentController {
 	return await this.commentService.search(commentSearchResquestDto)
     }
 	
+	@Post('all')
+	@ApiOperation({ summary: `all`})
+	@ApiResponse({status:200, type: CommentResponseDto})
+	public async proccessSearchCategory() {
+	return await this.commentService.all()
+    }
+	
 }

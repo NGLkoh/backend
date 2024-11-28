@@ -13,6 +13,9 @@ export class Event {
 	@Prop()
 	title: string
 
+   	@Prop()
+	description: string
+
 	@Prop()
 	users: [string]
 

@@ -39,4 +39,11 @@ export class CategoryController {
 	public async proccessUpdateCategoryById(@Body() categoryUpdateResquestDto: CategoryUpdateResquestDto) {
 	return await this.categoryService.updateById(categoryUpdateResquestDto)
     }
+
+    @Post('all')
+	@ApiOperation({ summary: `all`})
+	@ApiResponse({status:200, type: CategoryResponseDto})
+	public async proccessAll() {
+	return await this.categoryService.all()
+    }
 }

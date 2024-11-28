@@ -6,6 +6,9 @@ export class EventResquestDto {
 
 	@ApiProperty()
 	title: string
+  
+    @ApiProperty()
+	description: string
 
     @ApiProperty()
 	users: [object]

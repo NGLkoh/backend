@@ -24,4 +24,9 @@ export class CommentService {
 		const result: any =  await this.commentModel.find({ 'ids': commentSearchResquestDto.ids}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+    async all(): Promise<any> {
+		const result: any =  await this.commentModel.find().exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	} 
 }

@@ -6,7 +6,7 @@ import { Event } from './schema/events.module.schema';
 import { EventResquestDto } from './request/events.module-request.dto';
 import { CategorySearchResquestDto } from './request/events.module-search-request.dto';
 import { CategoryUpdateResquestDto } from './request/events.module-update-request.dto';
-
+import { CategoryUpdateUserResquestDto } from './request/events.module-add-update-request.dto';
 @Injectable()
 export class EventService {
   constructor(@InjectModel(Event.name) private eventModel: Model<Event>) {}
@@ -41,4 +41,11 @@ export class EventService {
 	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $set: { active: 1 } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+     async addUserToEvent(categoryUpdateUserResquestDto: CategoryUpdateUserResquestDto): Promise<any> {
+         let newId = new Types.ObjectId(categoryUpdateUserResquestDto.ids)
+	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $push: { users: categoryUpdateUserResquestDto.userId }  },{ upsert: true }).exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
 }
