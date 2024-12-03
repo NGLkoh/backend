@@ -16,7 +16,7 @@ import {EventModule } from './events/events.module'
   ConfigModule.forRoot({
       expandVariables: true}),
   ConfigModule.forRoot(),
-  MongooseModule.forRoot(process.env.mongo_url),
+  MongooseModule.forRoot(process.env.MONGO_URL),
   TemplateModule,
   MediaModule,
   CommentModule,
