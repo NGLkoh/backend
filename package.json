@@ -29,6 +29,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.4.2",
     "gmail-send": "^1.8.14",
+    "heroku": "^8.7.1",
     "mongoose": "^8.6.3",
     "nodemailer": "^6.9.15",
     "reflect-metadata": "^0.2.0",

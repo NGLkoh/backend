@@ -89,7 +89,6 @@ export class UserService {
 			text: `Hello, Here is your verification code for SMECO "${emailResquestDto.code}" `, // plain text body
 		 });
 			
-      console.log(info)
       console.log("Message sent: %s", info.messageId);
        return  { status: 200, message: 'true', result : "sending"};
   }
