@@ -22,7 +22,7 @@ export class MessageService {
    }
 
 	async search(messageSearchResquestDto: MessageSearchResquestDto): Promise<any> {
-		const result: any =  await this.messageModel.find({ 'users':  messageSearchResquestDto.id}).exec()
+		const result: any =  (await this.messageModel.find({ 'users':  messageSearchResquestDto.id}).sort({dateCreated : -1}).exec())
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 

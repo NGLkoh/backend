@@ -21,6 +21,9 @@ export class Event {
 
 	@Prop()
 	date: string
+     
+    @Prop()
+	fileName: string
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

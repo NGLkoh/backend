@@ -15,4 +15,7 @@ export class EventResquestDto {
 
     @ApiProperty()
 	date: string
+    
+    @ApiProperty()
+	fileName: string
 }

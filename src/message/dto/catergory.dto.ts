@@ -6,4 +6,7 @@ export class MessageResponseDto {
 
     @ApiProperty()
 	data:  string
+
+    @ApiProperty()
+	dateCreated:  string
 }

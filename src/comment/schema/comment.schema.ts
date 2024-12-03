@@ -13,6 +13,9 @@ export class Comment {
 	@Prop()
 	message: string
 
+    @Prop()
+	email: string
+
 	@Prop()
 	date: string
 }
