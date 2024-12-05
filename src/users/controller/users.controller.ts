@@ -14,6 +14,8 @@ import { UserDeleteResquestIdDto } from '../request/delete-subuser.request';
 import { SearchResquestByIdDto } from '../request/user-by-id.request';
 import { VerifyUserResquestByIdDto } from '../request/verify-user.request';
 import { AddProfileResquestByIdDto } from '../request/add-profile.request';
+import { EmailResetResquestDto } from '../request/email-reset-password.request';
+import { EmailResetUpdateResquestDto } from '../request/email-reset-password-update.request';
 
 @Controller('user')
 @ApiTags('User')
@@ -80,6 +82,20 @@ export class UserController {
 	return await this.usersService.sendEmail(emailResquestDto)
    }
 
+   @Post('email-reset')
+	@ApiOperation({ summary: `Sending email request reset password`})
+	@ApiResponse({status:200, type: UserResponseDto})
+	public async emailReset(@Body() emailResetResquestDto: EmailResetResquestDto) {
+	return await this.usersService.sendEmailForgotPassword(emailResetResquestDto)
+   }
+
+   @Post('reset-password')
+	@ApiOperation({ summary: `reset password`})
+	@ApiResponse({status:200, type: UserResponseDto})
+	public async emailResetPassword(@Body() emailResetResquestDto: EmailResetUpdateResquestDto) {
+	return await this.usersService.resetPassword(emailResetResquestDto)
+   }
+ 
 	@Post('verify')
 	@ApiOperation({ summary: `Sending email`})
 	@ApiResponse({status:200, type: UserResponseDto})

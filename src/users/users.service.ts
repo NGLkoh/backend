@@ -11,6 +11,7 @@ import { UserDeleteResquestIdDto } from './request/delete-subuser.request';
 import { SearchResquestByIdDto } from './request/user-by-id.request';
 import { VerifyUserResquestByIdDto } from './request/verify-user.request';
 import { AddProfileResquestByIdDto } from './request/add-profile.request';
+import { Html } from 'next/document';
 const nodeMailer = require('nodemailer')
 
 @Injectable()
@@ -68,9 +69,52 @@ export class UserService {
 	const result =  await this.userModel.find().exec()
     return  { status: 200, message: 'true', result : result};
   }
+ 
+  public async resetPassword(emailResquestDto): Promise<any> {
+    console.log(emailResquestDto)
+    const reset: any =  await this.userModel.updateOne( { token: emailResquestDto.token }, [{ $set: { password: emailResquestDto.password  } }],{ upsert: true }).exec()
+    const result: any =  await this.userModel.updateOne( { token: emailResquestDto.token }, [{ $set: { token: '' } }],{ upsert: true }).exec()
+     
+    return  { status: 200, message: 'true', result : reset};
+  }
+
+  public async sendEmailForgotPassword(emailResquestDto): Promise<any> {
+   console.log(emailResquestDto)
+    let transporter = nodeMailer.createTransport({
+			host: "smtp-relay.brevo.com",
+			port: 465,
+			secure: true, // true for 465, false for other ports
+			auth: {
+				user: "7d1b62003@smtp-brevo.com", // generated ethereal user
+				pass: "8cdjwyZpRPJbEsW5", // generated ethereal password
+			},
+	 });
+
+    const a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+
+    let b = [];  
+    let length = 32
+    for (let i=0; i<length; i++) {
+        let j = (Math.random() * (a.length-1)).toFixed(0);
+        b[i] = a[j];
+    }
+
+    let token = b.join("")
+
+    const result: any =  await this.userModel.updateOne( { username: emailResquestDto.email }, [{ $set: { token: token } }],{ upsert: true }).exec()
+     	
+ 	 await transporter.sendMail({
+			from: '"smeco" ianmedina0909@gmail.com', // sender address
+			to: emailResquestDto.email, // list of receivers
+			subject: "Request Reset Password ✔", // Subject line
+			html: `Hello, Click the link to reset password <a href="http://localhost:3000/request-forgot/${token}">here</a>. `, // plain text body
+	 });
+       
+      return  { status: 200, message: 'true', result : result};
+  }
 
   public async sendEmail(emailResquestDto): Promise<any> {
-
+ 
 // create reusable transporter object using the default SMTP transport
 		 let transporter = nodeMailer.createTransport({
 			host: "smtp-relay.brevo.com",
@@ -81,8 +125,7 @@ export class UserService {
 				pass: "8cdjwyZpRPJbEsW5", // generated ethereal password
 			},
 		 });
-
-     	 let info = await transporter.sendMail({
+        let info = await transporter.sendMail({
 			from: '"smeco" ianmedina0909@gmail.com', // sender address
 			to: emailResquestDto.email, // list of receivers
 			subject: "Verification Code ✔", // Subject line
@@ -95,20 +138,17 @@ export class UserService {
 
   async confirmVerify(verifyUserResquestByIdDto: VerifyUserResquestByIdDto): Promise<any> {
         let newId = new Types.ObjectId(verifyUserResquestByIdDto.id)
-         console.log(verifyUserResquestByIdDto , "DSDS")
 		const result: any =  await this.userModel.updateOne( { _id: newId }, [{ $set: { active: verifyUserResquestByIdDto.value } }],{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
  async addProfileBlog(addProfileResquestByIdDto: AddProfileResquestByIdDto): Promise<any> {
         let newId = new Types.ObjectId(addProfileResquestByIdDto.id)
-         console.log(addProfileResquestByIdDto , "DSDS")
         await this.userModel.updateOne( { _id: newId }, [{ $set: { profileSet: 1 } }],{ upsert: true }).exec()
 		const result: any =  await this.userModel.updateOne( { _id: newId }, { $push: { profile: addProfileResquestByIdDto.data } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
  async editProfileBlog(addProfileResquestByIdDto: AddProfileResquestByIdDto): Promise<any> {
         let newId = new Types.ObjectId(addProfileResquestByIdDto.id)
-         console.log(addProfileResquestByIdDto , "DSDS")
         await this.userModel.updateOne( { _id: newId }, [{ $set: { profileSet: 1 } }],{ upsert: true }).exec()
 		const result: any =  await this.userModel.updateOne( { _id: newId }, { $set: { profile: addProfileResquestByIdDto.data } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};

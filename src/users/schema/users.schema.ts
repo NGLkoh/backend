@@ -42,6 +42,9 @@ export class User {
 
     @Prop()
 	active: boolean
+ 
+    @Prop()
+	token: string
 
     @Prop()
 	ids: string
