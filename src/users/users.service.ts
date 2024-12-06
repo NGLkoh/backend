@@ -11,7 +11,6 @@ import { UserDeleteResquestIdDto } from './request/delete-subuser.request';
 import { SearchResquestByIdDto } from './request/user-by-id.request';
 import { VerifyUserResquestByIdDto } from './request/verify-user.request';
 import { AddProfileResquestByIdDto } from './request/add-profile.request';
-import { Html } from 'next/document';
 const nodeMailer = require('nodemailer')
 
 @Injectable()
@@ -150,6 +149,8 @@ export class UserService {
  async editProfileBlog(addProfileResquestByIdDto: AddProfileResquestByIdDto): Promise<any> {
         let newId = new Types.ObjectId(addProfileResquestByIdDto.id)
         await this.userModel.updateOne( { _id: newId }, [{ $set: { profileSet: 1 } }],{ upsert: true }).exec()
+        await this.userModel.updateOne( { _id: newId }, { $set: { profile: {}} },{ upsert: true }).exec()
+		
 		const result: any =  await this.userModel.updateOne( { _id: newId }, { $set: { profile: addProfileResquestByIdDto.data } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}

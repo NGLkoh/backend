@@ -32,6 +32,9 @@ export class Template {
 	idSub?: string
 
     @Prop()
+	likes?: number
+
+    @Prop()
 	comment?: [object]
 }
 

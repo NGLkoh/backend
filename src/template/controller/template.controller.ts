@@ -7,6 +7,7 @@ import { TemplateResquestDto } from '../request/template-request.dto';
 import { TemplateSearchResquestDto } from '../request/template-search-request.dto';
 import { TemplateUpdateCategoryResquestDto } from '../request/template-update-category-request.dto';
 import { TemplateDataResquestDto } from '../request/template-update-data-request.dto';
+import { TemplateDeleteResquestDto } from '../request/template-delete-template-request.dto';
 
 @Controller('template')
 @ApiTags('Template')
@@ -64,4 +65,12 @@ export class TemplateController {
 	public async proccessSearchCategory() {
 	return await this.templateService.all()
     }
+
+     
+    @Post('remove')
+	@ApiOperation({ summary: `delete template`})
+	@ApiResponse({status:200, type: TemplateResponseDto})
+	public async proccessDeleteUserSub(@Body() templateDeleteResquestDto: TemplateDeleteResquestDto) {
+	return await this.templateService.deleteTemplate(templateDeleteResquestDto)
+   }
 }

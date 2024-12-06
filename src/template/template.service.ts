@@ -6,6 +6,7 @@ import { TemplateResquestDto } from './request/template-request.dto';
 import { TemplateSearchResquestDto } from './request/template-search-request.dto';
 import { TemplateUpdateCategoryResquestDto } from './request/template-update-category-request.dto';
 import { TemplateDataResquestDto } from './request/template-update-data-request.dto';
+import { TemplateDeleteResquestDto } from './request/template-delete-template-request.dto';
 
 @Injectable()
 export class TemplateService {
@@ -51,10 +52,24 @@ export class TemplateService {
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
-     async UpdateDatatemplate(templateDataResquestDto: TemplateDataResquestDto): Promise<any> {
-     let newId = new Types.ObjectId(templateDataResquestDto.id)
-		const result: any =  await this.templateModel.updateOne( { _id: newId }, [{ $set: { data: templateDataResquestDto.data } }],{ upsert: true }).exec()
+    async deleteTemplate(templateDeleteResquestDto: TemplateDeleteResquestDto): Promise<any> {
+
+       let newId = new Types.ObjectId(templateDeleteResquestDto.id)
+		const result: any =  await this.templateModel.deleteOne({ '_id': newId}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
+ 
+  async UpdateDatatemplate(templateDataResquestDto: TemplateDataResquestDto): Promise<any> {
+    console.log(templateDataResquestDto)
+     let newId = new Types.ObjectId(templateDataResquestDto.id)
+        let result :any
+        if(templateDataResquestDto.type == 1 ) {
+          result =  await this.templateModel.updateOne( { _id: newId }, [{ $set: { data: templateDataResquestDto.data } }],{ upsert: true }).exec() 
+        } else {
+          result =  await this.templateModel.updateOne( { _id: newId }, [{ $set:  templateDataResquestDto.data  }],{ upsert: true }).exec()
+       }
+       return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 
 	}
 }

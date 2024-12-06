@@ -6,5 +6,7 @@ export class TemplateDataResquestDto {
 
 	@ApiProperty()
 	data: string
-
+   
+    @ApiProperty()
+	type: number
 }

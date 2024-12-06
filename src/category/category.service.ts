@@ -6,6 +6,7 @@ import { Category } from './schema/category.schema';
 import { CategoryResquestDto } from './request/category-request.dto';
 import { CategorySearchResquestDto } from './request/category-search-request.dto';
 import { CategoryUpdateResquestDto } from './request/category-update-request.dto';
+import { CategoryDeleteResquestDto } from './request/category-delete.dto';
 
 @Injectable()
 export class CategoryService {
@@ -41,4 +42,11 @@ export class CategoryService {
 		const result: any =  await this.categoryModel.find().exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	} 
+     
+       async deleteCat(categoryDeleteResquestDto: CategoryDeleteResquestDto): Promise<any> {
+        let newId = new Types.ObjectId(categoryDeleteResquestDto.ids)
+	 	const result: any =  await this.categoryModel.deleteOne({ '_id': newId}).exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
 }

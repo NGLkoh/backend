@@ -5,6 +5,7 @@ import { CategoryService } from '../category.service';
 import { CategoryResquestDto } from '../request/category-request.dto';
 import { CategorySearchResquestDto } from '../request/category-search-request.dto';
 import { CategoryUpdateResquestDto } from '../request/category-update-request.dto';
+import { CategoryDeleteResquestDto } from '../request/category-delete.dto';
 
 @Controller('category')
 @ApiTags('Category')
@@ -19,6 +20,12 @@ export class CategoryController {
 	return await this.categoryService.create(categoryResquestDto)
     }
 
+    @Post('remove')
+	@ApiOperation({ summary: `delete users`})
+	@ApiResponse({status:200, type: CategoryResponseDto})
+	public async proccessDeleteUserSub(@Body() categoryDeleteResquestDto: CategoryDeleteResquestDto) {
+	return await this.categoryService.deleteCat(categoryDeleteResquestDto)
+   }
 	@Post('search')
 	@ApiOperation({ summary: `search Category By Ids`})
 	@ApiResponse({status:200, type: CategoryResponseDto})
