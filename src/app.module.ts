@@ -10,6 +10,7 @@ import {CommentModule } from './comment/comment.module'
 import {MediaModule } from './media/media.module'
 import {MessageModule } from './message/message.module'
 import {EventModule } from './events/events.module'
+import { SubscribeModule } from './subscribe/subscribe.module';
 @Module({
   imports: [ 
   UsersModule,
@@ -20,6 +21,7 @@ import {EventModule } from './events/events.module'
   TemplateModule,
   MediaModule,
   CommentModule,
+  SubscribeModule,
   MessageModule,
   EventModule,
   CategoryModule],

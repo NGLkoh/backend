@@ -33,6 +33,9 @@ export class Template {
 
     @Prop()
 	likes?: number
+    
+    @Prop()
+	ip?: [string]
 
     @Prop()
 	comment?: [object]
