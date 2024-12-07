@@ -81,11 +81,11 @@ export class UserService {
    console.log(emailResquestDto)
     let transporter = nodeMailer.createTransport({
 			host: "smtp-relay.brevo.com",
-			port: 587,
+			port: 465,
 			secure: true, // true for 465, false for other ports
 			auth: {
-				user: "8171ef001@smtp-brevo.com", // generated ethereal user
-				pass: "TCqRSk9LsZhz0UHc", // generated ethereal password
+				user: "7d1b62003@smtp-brevo.com", // generated ethereal user
+				pass: "8cdjwyZpRPJbEsW5", // generated ethereal password
 			},
 	 });
 
@@ -103,10 +103,10 @@ export class UserService {
     const result: any =  await this.userModel.updateOne( { username: emailResquestDto.email }, [{ $set: { token: token } }],{ upsert: true }).exec()
      	
  	 await transporter.sendMail({
-			from: '"Markadong Pinoy" bdmpkitsolutions24@gmail.com', // sender address
+			from: '"Markadong Pinoy" ianmedina0909@gmail.com', // sender address
 			to: emailResquestDto.email, // list of receivers
-			subject: "Request Reset Password ✔", // Subject line
-			html: `Good Day, Click the link to reset your password <a href="https://www.markadongpinoy.com/request-forgot/${token}">here</a>. `, // plain text body
+			subject: "Markadong Pinoy Request Reset Password ✔", // Subject line
+			html: `Hello, Click the link to reset your password <a href="https://www.markadongpinoy.com/request-forgot/${token}">here</a>. `, // plain text body
 	 });
        
       return  { status: 200, message: 'true', result : result};
@@ -117,18 +117,18 @@ export class UserService {
 // create reusable transporter object using the default SMTP transport
 		 let transporter = nodeMailer.createTransport({
 			host: "smtp-relay.brevo.com",
-			port: 587,
+			port: 465,
 			secure: true, // true for 465, false for other ports
 			auth: {
-				user: "8171ef001@smtp-brevo.com", // generated ethereal user
-				pass: "TCqRSk9LsZhz0UHc", // generated ethereal password
+				user: "7d1b62003@smtp-brevo.com", // generated ethereal user
+				pass: "8cdjwyZpRPJbEsW5", // generated ethereal password
 			},
 		 });
         let info = await transporter.sendMail({
-			from: '"Markadong Pinoy" bdmpkitsolutions24@gmail.com', // sender address
+			from: '"Markadong Pinoy" ianmedina0909@gmail.com', // sender address
 			to: emailResquestDto.email, // list of receivers
 			subject: "Verification Code ✔", // Subject line
-			text: `Hello, Here is your verification code for Markadong Pinoy is "${emailResquestDto.code}" `, // plain text body
+			text: `Hello, Here is your verification code for Markadong Pinoy Account: "${emailResquestDto.code}" `, // plain text body
 		 });
 			
       console.log("Message sent: %s", info.messageId);
