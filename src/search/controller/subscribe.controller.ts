@@ -4,7 +4,7 @@ import { SubscribeResponseDto } from '../dto/subscribe.dto';
 import { SearchDetailService } from '../search.service';
 import {  SearchDetailResquestDto } from '../request/search-request.dto';
 
-@Controller('search')
+@Controller('search')	
 @ApiTags('Search')
 
 export class SubscribeController {
@@ -45,12 +45,12 @@ export class SubscribeController {
 // 	return await this.subscribeService.updateById(categoryUpdateResquestDto)
 //     }
 
-//     @Post('all')
-// 	@ApiOperation({ summary: `all`})
-// 	@ApiResponse({status:200, type: SubscribeResponseDto})
-// 	public async proccessAll() {
-// 	return await this.subscribeService.all()
-//     }
+    @Post('all')
+	@ApiOperation({ summary: `all`})
+	@ApiResponse({status:200, type: SubscribeResponseDto})
+	public async proccessAll() {
+	return await this.searchDetailService.all()
+    }
 
 // 	@Post('sendMail')
 // 	@ApiOperation({ summary: `Update Category By Id`})

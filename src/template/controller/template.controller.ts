@@ -8,6 +8,7 @@ import { TemplateSearchResquestDto } from '../request/template-search-request.dt
 import { TemplateUpdateCategoryResquestDto } from '../request/template-update-category-request.dto';
 import { TemplateDataResquestDto } from '../request/template-update-data-request.dto';
 import { TemplateDeleteResquestDto } from '../request/template-delete-template-request.dto';
+import { TemplateSearchByCategoryIdResquestDto } from '../request/template-search-categoryId-request.dto';
 
 @Controller('template')
 @ApiTags('Template')
@@ -43,6 +44,13 @@ export class TemplateController {
 	@ApiResponse({status:200, type: TemplateResponseDto})
 	public async proccessSearchTemplateSub(@Body() templateSearchResquestDto: TemplateSearchResquestDto) {
 	return await this.templateService.template(templateSearchResquestDto)
+    }
+
+    @Post('search-by-categoryId')
+	@ApiOperation({ summary: `create Template by category id`})
+	@ApiResponse({status:200, type: TemplateResponseDto})
+	public async proccessSearchTemplateByCategoryId(@Body() templateSearchByCategoryIdResquestDto: TemplateSearchByCategoryIdResquestDto) {
+	return await this.templateService.searchByCategoryId(templateSearchByCategoryIdResquestDto)
     }
 
     @Post('update-catergory')

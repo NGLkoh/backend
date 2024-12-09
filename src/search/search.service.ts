@@ -63,10 +63,10 @@ export class SearchDetailService {
     //    return { status: 200, message:  'true', result : 'sent'};
 	// }
 
-    //     async all(): Promise<any> {
-	// 	const result: any =  await this.subscribeModel.find().exec()
-	// 	return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
-	// } 
+        async all(): Promise<any> {
+		const result: any =  await this.searchModel.find().exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	} 
      
     //    async deleteSub(subscribeDeleteResquestDto: SubscribeDeleteResquestDto): Promise<any> {
     //     let newId = new Types.ObjectId(subscribeDeleteResquestDto.ids)

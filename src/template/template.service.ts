@@ -7,6 +7,7 @@ import { TemplateSearchResquestDto } from './request/template-search-request.dto
 import { TemplateUpdateCategoryResquestDto } from './request/template-update-category-request.dto';
 import { TemplateDataResquestDto } from './request/template-update-data-request.dto';
 import { TemplateDeleteResquestDto } from './request/template-delete-template-request.dto';
+import { TemplateSearchByCategoryIdResquestDto } from './request/template-search-categoryId-request.dto';
 
 @Injectable()
 export class TemplateService {
@@ -36,6 +37,11 @@ export class TemplateService {
 
 	async template(templateSearchResquestDto: TemplateSearchResquestDto): Promise<any> {
 		const result: any =  await this.templateModel.find({ '_id': templateSearchResquestDto.ids}).exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
+    async searchByCategoryId(templateSearchByCategoryIdResquestDto: TemplateSearchByCategoryIdResquestDto): Promise<any> {
+		const result: any =  await this.templateModel.find({ 'category_id': templateSearchByCategoryIdResquestDto.id}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
