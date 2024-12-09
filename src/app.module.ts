@@ -11,6 +11,7 @@ import {MediaModule } from './media/media.module'
 import {MessageModule } from './message/message.module'
 import {EventModule } from './events/events.module'
 import { SubscribeModule } from './subscribe/subscribe.module';
+import { SearchModule } from './search/search.module';
 @Module({
   imports: [ 
   UsersModule,
@@ -18,6 +19,7 @@ import { SubscribeModule } from './subscribe/subscribe.module';
       expandVariables: true}),
   ConfigModule.forRoot(),
   MongooseModule.forRoot(process.env.MONGO_URL),
+  SearchModule,
   TemplateModule,
   MediaModule,
   CommentModule,
