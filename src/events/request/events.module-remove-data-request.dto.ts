@@ -1,6 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class SubscribeSearchResquestDto {
+
+export class RemoveEventRequestDTO {
 	@ApiProperty()
-	email: string
+	id: string
+
 }

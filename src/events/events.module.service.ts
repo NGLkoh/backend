@@ -5,8 +5,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Event } from './schema/events.module.schema';
 import { EventResquestDto } from './request/events.module-request.dto';
 import { CategorySearchResquestDto } from './request/events.module-search-request.dto';
-import { CategoryUpdateResquestDto } from './request/events.module-update-request.dto';
-import { CategoryUpdateUserResquestDto } from './request/events.module-add-update-request.dto';
+import { EventUpdateResquestDto } from './request/events.module-update-request.dto';
+import { EventUpdateUserResquestDto } from './request/events.module-add-update-request.dto';
+import { RemoveEventRequestDTO } from './request/events.module-remove-data-request.dto';
 @Injectable()
 export class EventService {
   constructor(@InjectModel(Event.name) private eventModel: Model<Event>) {}
@@ -36,16 +37,24 @@ export class EventService {
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
-    async updateById(categoryUpdateResquestDto: CategoryUpdateResquestDto): Promise<any> {
-         let newId = new Types.ObjectId(categoryUpdateResquestDto.ids)
-	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $set: { active: 1 } },{ upsert: true }).exec()
+    async updateById(eventUpdateResquestDto: EventUpdateResquestDto): Promise<any> {
+         let newId = new Types.ObjectId(eventUpdateResquestDto.id)
+	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $set: { ...eventUpdateResquestDto.data } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
-     async addUserToEvent(categoryUpdateUserResquestDto: CategoryUpdateUserResquestDto): Promise<any> {
-         let newId = new Types.ObjectId(categoryUpdateUserResquestDto.ids)
-	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $push: { users: categoryUpdateUserResquestDto.userId }  },{ upsert: true }).exec()
+     async addUserToEvent(eventUpdateUserResquestDto: EventUpdateUserResquestDto): Promise<any> {
+         let newId = new Types.ObjectId(eventUpdateUserResquestDto.ids)
+	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $push: { users: eventUpdateUserResquestDto.userId }  },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+    async removeEvent(removeEventRequestDTO: RemoveEventRequestDTO): Promise<any> {
+        let newId = new Types.ObjectId(removeEventRequestDTO.id)
+	 	const result: any =  await this.eventModel.deleteOne({ '_id': newId}).exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
+    
 
 }

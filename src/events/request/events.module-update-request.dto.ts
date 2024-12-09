@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CategoryUpdateResquestDto {
+export class EventUpdateResquestDto {
 	@ApiProperty()
-	ids: string
+	id: string
 
  	@ApiProperty()
-	title: string
+	data: [object]
 }

@@ -83,9 +83,9 @@ export class UserService {
 			host: "smtp-relay.brevo.com",
 			port: 465,
 			secure: true, // true for 465, false for other ports
-			auth: {
-				user: "7d1b62003@smtp-brevo.com", // generated ethereal user
-				pass: "8cdjwyZpRPJbEsW5", // generated ethereal password
+		    auth: {
+				user: "8171ef001@smtp-brevo.com", // generated ethereal user
+				pass: "TCqRSk9LsZhz0UHc", // generated ethereal password
 			},
 	 });
 
@@ -103,7 +103,7 @@ export class UserService {
     const result: any =  await this.userModel.updateOne( { username: emailResquestDto.email }, [{ $set: { token: token } }],{ upsert: true }).exec()
      	
  	 await transporter.sendMail({
-			from: '"Markadong Pinoy" ianmedina0909@gmail.com', // sender address
+			from: '"Markadong Pinoy" bdmpkitsolutions24@gmail.com', // sender address
 			to: emailResquestDto.email, // list of receivers
 			subject: "Markadong Pinoy Request Reset Password ✔", // Subject line
 			html: `Hello, Click the link to reset your password <a href="https://www.markadongpinoy.com/request-forgot/${token}">here</a>. `, // plain text body
@@ -120,12 +120,13 @@ export class UserService {
 			port: 465,
 			secure: true, // true for 465, false for other ports
 			auth: {
-				user: "7d1b62003@smtp-brevo.com", // generated ethereal user
-				pass: "8cdjwyZpRPJbEsW5", // generated ethereal password
+				user: "8171ef001@smtp-brevo.com", // generated ethereal user
+				pass: "TCqRSk9LsZhz0UHc", // generated ethereal password
 			},
 		 });
+
         let info = await transporter.sendMail({
-			from: '"Markadong Pinoy" ianmedina0909@gmail.com', // sender address
+			from: '"Markadong Pinoy" bdmpkitsolutions24@gmail.com', // sender address
 			to: emailResquestDto.email, // list of receivers
 			subject: "Verification Code ✔", // Subject line
 			text: `Hello, Here is your verification code for Markadong Pinoy Account: "${emailResquestDto.code}" `, // plain text body
@@ -154,6 +155,12 @@ export class UserService {
 		const result: any =  await this.userModel.updateOne( { _id: newId }, { $set: { profile: addProfileResquestByIdDto.data } },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+    async searchByIdGetProfilePicture(userResquestIdsDto: UserResquestIdsDto): Promise<any> {
+    let newId = new Types.ObjectId(userResquestIdsDto.ids)
+ 	const result: any =  await this.userModel.find({ '_id': newId}, {'profile.fileName': 1 , firstName: 1, lastName: 1}).exec()
+    return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+  }
  
 }
 // {

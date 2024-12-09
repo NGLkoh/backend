@@ -122,4 +122,11 @@ export class UserController {
 	public async editProfileBlog(@Body() editdProfileResquestByIdDto: AddProfileResquestByIdDto) {
 	return await this.usersService.editProfileBlog(editdProfileResquestByIdDto)
    }
+  
+    @Post('get-profile-picture')
+	@ApiOperation({ summary: `edit profile blog`})
+	@ApiResponse({status:200, type: UserResponseDto})
+	public async getProfilePicture(@Body() userResquestIdsDto: UserResquestIdsDto) {
+	return await this.usersService.searchByIdGetProfilePicture(userResquestIdsDto)
+   }
 }

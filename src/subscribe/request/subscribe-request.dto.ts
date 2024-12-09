@@ -6,4 +6,7 @@ export class SubscribeResquestDto {
 
     @ApiProperty()
 	date: string
+    
+    @ApiProperty()
+	sub: number
 }

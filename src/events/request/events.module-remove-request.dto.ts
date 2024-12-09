@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class SubscribeSearchResquestDto {
+export class CategoryUpdateResquestDto {
 	@ApiProperty()
-	email: string
+	id: string
 }

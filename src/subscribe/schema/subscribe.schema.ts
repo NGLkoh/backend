@@ -7,14 +7,15 @@ export type CategoryDocument = HydratedDocument<Subscribe>;
 
 @Schema()
 export class Subscribe {
-    @Prop()
-	ids: string
 
 	@Prop()
-	title: string
+	email: string
 
 	@Prop()
 	date: string
+
+    @Prop()
+	sub: number
 }
 
 export const SubscribeSchema = SchemaFactory.createForClass(Subscribe);
