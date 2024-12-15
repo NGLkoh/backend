@@ -24,30 +24,30 @@ export class TemplateService {
    }
 
 	async search(templateSearchResquestDto: TemplateSearchResquestDto): Promise<any> {
-		const result: any =  await this.templateModel.find({ 'ids': templateSearchResquestDto.ids}).exec()
+		const result: any =  await this.templateModel.find({ 'ids': templateSearchResquestDto.ids}).sort({date : -1}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
 	async searchAll(): Promise<any> {
-		const result: any =  await this.templateModel.find().exec()
+		const result: any =  await this.templateModel.find().sort({date : -1}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
 
 
 	async template(templateSearchResquestDto: TemplateSearchResquestDto): Promise<any> {
-		const result: any =  await this.templateModel.find({ '_id': templateSearchResquestDto.ids}).exec()
+		const result: any =  await this.templateModel.find({ '_id': templateSearchResquestDto.ids}).sort({date : -1}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
     async searchByCategoryId(templateSearchByCategoryIdResquestDto: TemplateSearchByCategoryIdResquestDto): Promise<any> {
-		const result: any =  await this.templateModel.find({ 'category_id': templateSearchByCategoryIdResquestDto.id}).exec()
+		const result: any =  await this.templateModel.find({ 'category_id': templateSearchByCategoryIdResquestDto.id}).sort({date : -1}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
 
     async all(): Promise<any> {
-		const result: any =  await this.templateModel.find().exec()
+		const result: any =  await this.templateModel.find().sort({date : -1}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	} 
 

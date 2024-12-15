@@ -1,10 +1,10 @@
-
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Media } from './schema/media.schema';
 import { MediaResquestDto } from './request/media-request.dto';
 import { MediaSearchResquestDto } from './request/media-search-request.dto';
+import { MediaRemoveResquestDto } from './request/media-delete-request.dto';
 
 @Injectable()
 export class MediaService {
@@ -24,4 +24,13 @@ export class MediaService {
 		const result: any =  await this.mediaModel.find({ 'ids': mediaSearchResquestDto.ids}).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+  
+	  async remove(mediaRemoveResquestDto: MediaRemoveResquestDto): Promise<any> {
+		  let newId = new Types.ObjectId(mediaRemoveResquestDto.id)
+         console.log(newId, "TETE")
+		const result: any =  await this.mediaModel.deleteOne({ '_id': newId}).exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+  
 }

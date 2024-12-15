@@ -4,6 +4,7 @@ import { CommentResponseDto } from '../dto/comment.dto';
 import { MediaService } from '../media.service';
 import { MediaResquestDto } from '../request/media-request.dto';
 import { MediaSearchResquestDto } from '../request/media-search-request.dto';
+import { MediaRemoveResquestDto } from '../request/media-delete-request.dto';
 
 @Controller('Media')
 @ApiTags('Media')
@@ -24,5 +25,12 @@ export class MediaController {
 	public async proccessSearchMedia(@Body() mediaSearchResquestDto: MediaSearchResquestDto) {
 	return await this.mediaService.search(mediaSearchResquestDto)
     }
+
+   	@Post('remove')	
+	@ApiOperation({ summary: `remove Media By Id`})
+	@ApiResponse({status:200, type: CommentResponseDto})
+	public async proccessRemoveMediaById(@Body() removeRequestDTO: MediaRemoveResquestDto) {
+	return await this.mediaService.remove(removeRequestDTO)
+	   }
 	
 }
