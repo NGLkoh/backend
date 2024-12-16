@@ -11,6 +11,7 @@ import { UserDeleteResquestIdDto } from './request/delete-subuser.request';
 import { SearchResquestByIdDto } from './request/user-by-id.request';
 import { VerifyUserResquestByIdDto } from './request/verify-user.request';
 import { AddProfileResquestByIdDto } from './request/add-profile.request';
+import { UserResquestCheckerByEmailDto } from './request/request-checkByEmail.request';
 const nodeMailer = require('nodemailer')
 
 @Injectable()
@@ -162,6 +163,12 @@ export class UserService {
     return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
   }
  
+  async getUserByEmail(userResquestCheckerByEmailDto: UserResquestCheckerByEmailDto): Promise<any> {
+ 	const result: any =  await this.userModel.find({ 'email': userResquestCheckerByEmailDto.email}).exec()
+    return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+  }
+ 
+   
 }
 // {
 //   id: '6734a42a7a49253a8223746e',

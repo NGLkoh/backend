@@ -16,6 +16,7 @@ import { VerifyUserResquestByIdDto } from '../request/verify-user.request';
 import { AddProfileResquestByIdDto } from '../request/add-profile.request';
 import { EmailResetResquestDto } from '../request/email-reset-password.request';
 import { EmailResetUpdateResquestDto } from '../request/email-reset-password-update.request';
+import { UserResquestCheckerByEmailDto } from '../request/request-checkByEmail.request';
 
 @Controller('user')
 @ApiTags('User')
@@ -128,5 +129,12 @@ export class UserController {
 	@ApiResponse({status:200, type: UserResponseDto})
 	public async getProfilePicture(@Body() userResquestIdsDto: UserResquestIdsDto) {
 	return await this.usersService.searchByIdGetProfilePicture(userResquestIdsDto)
-   }
+   } 
+
+    @Post('checker')
+	@ApiOperation({ summary: `edit profile blog`})
+	@ApiResponse({status:200, type: UserResponseDto})
+	public async getUserByEmail(@Body() userResquestCheckerByEmailDto: UserResquestCheckerByEmailDto) {
+	return await this.usersService.getUserByEmail(userResquestCheckerByEmailDto)
+   } 
 }

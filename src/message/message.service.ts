@@ -25,6 +25,11 @@ export class MessageService {
 		const result: any =  (await this.messageModel.find({ 'users':  messageSearchResquestDto.id}).sort({dateCreated : -1}).exec())
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+  
+    async searchChecker(messageSearchResquestDto: MessageSearchResquestDto): Promise<any> {
+		const result: any =  (await this.messageModel.find({ 'createdBy':  messageSearchResquestDto.id}).sort({dateCreated : -1}).exec())
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
 
    	async updateById(messageUpdateResquestDto: MessageUpdateResquestDto): Promise<any> {
 		await this.messageModel.updateOne({ '_id': messageUpdateResquestDto.messageId} , { $push: { convo: {message : messageUpdateResquestDto.message, id: messageUpdateResquestDto.userId }  }}).exec()

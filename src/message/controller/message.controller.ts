@@ -25,6 +25,13 @@ export class MessageController {
 	public async proccessSearchCategory(@Body() messageSearchResquestDto: MessageSearchResquestDto) {
 	return await this.messageService.search(messageSearchResquestDto)
     }
+
+    @Post('checker')
+	@ApiOperation({ summary: `search message`})
+	@ApiResponse({status:200, type: MessageResponseDto})
+	public async proccessSearchMessage(@Body() messageSearchResquestDto: MessageSearchResquestDto) {
+	return await this.messageService.searchChecker(messageSearchResquestDto)
+    }
 	
    	@Post('update')
 	@ApiOperation({ summary: `Update MEssage`})
