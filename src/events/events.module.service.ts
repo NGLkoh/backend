@@ -43,7 +43,7 @@ export class EventService {
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
 
-     async addUserToEvent(eventUpdateUserResquestDto: EventUpdateUserResquestDto): Promise<any> {
+    async addUserToEvent(eventUpdateUserResquestDto: EventUpdateUserResquestDto): Promise<any> {
          let newId = new Types.ObjectId(eventUpdateUserResquestDto.ids)
 	 	const result: any =  await this.eventModel.updateOne( { _id: newId }, { $push: { users: eventUpdateUserResquestDto.userId }  },{ upsert: true }).exec()
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
