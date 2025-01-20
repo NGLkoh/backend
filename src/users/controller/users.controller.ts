@@ -96,7 +96,16 @@ export class UserController {
 	public async emailResetPassword(@Body() emailResetResquestDto: EmailResetUpdateResquestDto) {
 	return await this.usersService.resetPassword(emailResetResquestDto)
    }
+
+     @Post('reset-password-dashboard')
+	@ApiOperation({ summary: `reset password`})
+	@ApiResponse({status:200, type: UserResponseDto})
+	public async resetPasswordDashboard(@Body() emailResetResquestDto: EmailResetUpdateResquestDto) {
+	return await this.usersService.resetPasswordDashboard(emailResetResquestDto)
+   }
  
+ 
+
 	@Post('verify')
 	@ApiOperation({ summary: `Sending email`})
 	@ApiResponse({status:200, type: UserResponseDto})

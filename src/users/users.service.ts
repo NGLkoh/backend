@@ -78,6 +78,13 @@ export class UserService {
     return  { status: 200, message: 'true', result : reset};
   }
 
+  public async resetPasswordDashboard(emailResquestDto): Promise<any> {
+    console.log(emailResquestDto)
+    const reset: any =  await this.userModel.updateOne( { _id: emailResquestDto.username }, [{ $set: { password: emailResquestDto.password  } }],{ upsert: true }).exec()
+    const result: any =  await this.userModel.updateOne( { _id: emailResquestDto.username }, [{ $set: { token: '' } }],{ upsert: true }).exec()
+     
+    return  { status: 200, message: 'true', result : reset};
+  }
   public async sendEmailForgotPassword(emailResquestDto): Promise<any> {
    console.log(emailResquestDto)
     let transporter = nodeMailer.createTransport({
