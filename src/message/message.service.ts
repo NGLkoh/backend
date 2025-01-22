@@ -6,6 +6,7 @@ import { Message } from './schema/message.schema';
 import { MessageResquestDto } from './request/message-request.dto';
 import { MessageSearchResquestDto } from './request/message-search-request.dto';
 import { MessageUpdateResquestDto } from './request/message-update-request.dto';
+import { MessageRemoveResquestDto } from './request/message-remove-request.dto';
 
 @Injectable()
 export class MessageService {
@@ -36,6 +37,13 @@ export class MessageService {
 		const result: any =  await this.messageModel.find({ 'users':  messageUpdateResquestDto.userId}).exec()		
 		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
 	}
+
+    async removeById(messageRemoveResquestDto: MessageRemoveResquestDto): Promise<any> {
+          let newId = new Types.ObjectId(messageRemoveResquestDto.id)
+		const result: any =  await this.messageModel.deleteOne({ '_id': newId}).exec()
+		return { status: 200, message: result.length >= 1  ? 'true' : 'false', result : result};
+	}
+
 
     // async updateById(categoryUpdateResquestDto: CategoryUpdateResquestDto): Promise<any> {
     //      let newId = new Types.ObjectId(categoryUpdateResquestDto.ids)

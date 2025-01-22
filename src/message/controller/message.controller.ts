@@ -5,6 +5,7 @@ import { MessageService } from '../message.service';
 import { MessageResquestDto } from '../request/message-request.dto';
 import { MessageSearchResquestDto } from '../request/message-search-request.dto';
 import { MessageUpdateResquestDto } from '../request/message-update-request.dto';
+import { MessageRemoveResquestDto } from '../request/message-remove-request.dto';
 
 @Controller('message')
 @ApiTags('Message')
@@ -38,5 +39,12 @@ export class MessageController {
 	@ApiResponse({status:200, type: MessageResponseDto})
 	public async proccessUpdateCategoryById(@Body() messageUpdateResquestDto: MessageUpdateResquestDto) {
 	return await this.messageService.updateById(messageUpdateResquestDto)
+    }
+
+    @Post('remove')
+	@ApiOperation({ summary: `Remove MEssage`})
+	@ApiResponse({status:200, type: MessageResponseDto})
+	public async proccessRemoveMessageById(@Body() messageRemoveResquestDto: MessageRemoveResquestDto) {
+	return await this.messageService.removeById(messageRemoveResquestDto)
     }
 }

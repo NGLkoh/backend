@@ -48,6 +48,9 @@ export class User {
 
     @Prop()
 	ids: string
+    
+    @Prop()
+	dateCreated: string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
