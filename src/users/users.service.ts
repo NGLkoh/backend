@@ -142,7 +142,11 @@ export class UserService {
             <p>Please note that the admin will approve your registration first before you can freely log in. The admin will contact you once your registration has been approved.</p>
             <p>You can also email us at this email for further assistance.</p>
             <p>Welcome to Markadong Pinoy! We look forward to working with you and supporting your business endeavors.</p>
-            <p>Here is your verification code for Markadong Pinoy Account:  <b>${emailResquestDto.code}</b></p>`, // plain text body
+            <p>Here is your verification code for Markadong Pinoy Account:  <b>${emailResquestDto.code}</b></p>
+          <br> <br>
+            <p>Follow up the application by contacting the admin here: </p>
+            <p>Mobile: +63 936 994 0234 </p>
+            <p>Email: capeest.2021@gmail.com </p>`, // plain text body
 		 });
 			
       console.log("Message sent: %s", info.messageId);
