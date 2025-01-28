@@ -138,6 +138,7 @@ export class UserService {
 			to: emailResquestDto.email, // list of receivers
 			subject: "Verification Code ✔", // Subject line
 			html: `
+            <p> Please wait around 1-2 business days as we process your application </p>
             <p>Please note that the admin will approve your registration first before you can freely log in. The admin will contact you once your registration has been approved.</p>
             <p>You can also email us at this email for further assistance.</p>
             <p>Welcome to Markadong Pinoy! We look forward to working with you and supporting your business endeavors.</p>
